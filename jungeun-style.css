@@ -707,11 +707,11 @@ p {
   transition: opacity 0.4s ease;
 }
 .bg-danger {
-  background-image: url('pexels-eduardo-romero-817034-5104823.jpg');
+  background-image: url('danger.jpg');
   z-index: 1;
 }
 .bg-secure {
-  background-image: url('pexels-cao-huy-753105-16708400.jpg');
+  background-image: url('security.jpg');
   z-index: 2;
   opacity: 0;
 } /* 기본으로 숨김 */

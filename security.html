@@ -19,7 +19,6 @@
         <ul class="nav">
           <li><a href="index.html">Home</a></li>
           <li><a href="security.html">Security</a></li>
-          <li><a href="quiz.html">Quiz</a></li>
           <li><a href="team.html">Team</a></li>
         </ul>
       </div>
@@ -28,10 +27,8 @@
     <div class="mobile-menu" id="mobileMenu">
       <a href="index.html">Home</a>
       <a href="security.html">Security</a>
-      <a href="quiz.html">Quiz</a>
       <a href="team.html">Team</a>
     </div>
-
 
     <div class="box-container">
       <div class="filter-container">
@@ -42,7 +39,6 @@
         <button class="summary-btn" id="summaryBtn">요약 보기</button>
       </div>
 
-    <div class="box-container">
       <div class="box">
         <div class="box-top">
           <h1>DDOS 공격</h1>
@@ -93,10 +89,6 @@
       <div class="box">
         <div class="box-top">
           <h1>Broken Access Control</h1>
-          <h1>
-            Broken Access<br>Control
-            <br />
-          </h1>
           <span class="category-tag2">앱</span>
         </div>
         <p>#권한 #접근제어 #사용자</p>
@@ -112,11 +104,6 @@
       <div class="box">
         <div class="box-top">
           <h1>Insecure Design</h1>
-          <h1>
-            Insecure<br>Design
-            <br />
-          </h1>
-          <br />
           <span class="category-tag2">앱</span>
         </div>
         <p>#철저한 #효율 #설계</p>
@@ -131,7 +118,6 @@
       <div class="box">
         <div class="box-top">
           <h1>Vulnerable and Outdated</h1>
-          <h1>Vulnerable and Outdated </h1>
           <span class="category-tag2">앱</span>
         </div>
         <p>#모니터링 #취약점 #최신화</p>
@@ -287,42 +273,5 @@
     </div>
 
     <script src="javascrpit.js"></script>
-=======
-    <script>
-      document.querySelectorAll('.toggle').forEach((btn) => {
-        btn.addEventListener('click', function () {
-          const box = this.closest('.box')
-          const desc = box.querySelector('.desc')
-          const isHidden =
-            desc.style.display === 'none' || desc.style.display === ''
-
-          document.querySelectorAll('.box').forEach((otherBox) => {
-            const otherDesc = otherBox.querySelector('.desc')
-            const otherToggle = otherBox.querySelector('.toggle')
-
-            otherDesc.style.display = 'none'
-            otherToggle.textContent = '자세히 보기 ▾'
-          })
-
-          if (isHidden) {
-            desc.style.display = 'block'
-            this.textContent = '접기 ▴'
-          }
-        })
-      })
-
-      const btn = document.getElementById('menuBtn')
-      const menu = document.getElementById('mobileMenu')
-
-      btn.addEventListener('click', () => {
-        menu.classList.toggle('open')
-      })
-
-      document.addEventListener('click', (e) => {
-        if (!btn.contains(e.target) && !menu.contains(e.target)) {
-          menu.classList.remove('open')
-        }
-      })
-    </script>
   </body>
 </html>
