@@ -1,0 +1,820 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  color: white;
+  background-color: #0a0e27;
+  padding-top: 80px;
+}
+
+.navbar {
+  color: white;
+  background-color: #06091a;
+  height: 80px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+}
+
+.container {
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  position: relative;
+}
+
+.logo {
+  font-size: x-large;
+  font-weight: bold;
+}
+
+.logo-def {
+  color: white;
+}
+
+.logo-high {
+  color: #03ff40;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.nav {
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+  align-items: center;
+}
+
+.nav > li > a {
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.nav > li > a:hover {
+  text-decoration: underline;
+  color: #03ff40;
+}
+
+.more {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 10px;
+}
+
+.more > span {
+  display: block;
+  width: 25px;
+  height: 2px;
+  background-color: white;
+  border-radius: 3px;
+}
+
+.mobile-menu {
+  display: none;
+  position: fixed;
+  top: 80px;
+  left: 0;
+  right: 0;
+  background-color: #06091a;
+  flex-direction: column;
+  z-index: 998;
+  border-top: 1px solid #1a2040;
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.35s ease;
+}
+
+.mobile-menu.open {
+  max-height: 200px;
+}
+
+.mobile-menu a {
+  display: block;
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 16px 24px;
+  border-bottom: 1px solid #1a2040;
+  transition:
+    color 0.2s,
+    background 0.2s;
+}
+
+.mobile-menu a:hover {
+  color: #03ff40;
+  background: #0d1230;
+}
+
+.top {
+  width: 100%;
+  height: 100px;
+}
+
+.content {
+  display: flex;
+  flex-direction: row;
+}
+
+.left {
+  width: 60%;
+  min-height: 580px;
+  display: flex;
+  align-items: center;
+}
+
+.left-content {
+  width: 100%;
+  margin: 60px 60px 60px 80px;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+}
+
+.title > h1 {
+  font-size: 80px;
+  line-height: 1.15;
+}
+
+.title-def {
+  color: white;
+}
+
+.title-high {
+  color: #03ff40;
+}
+
+.ex {
+  margin-top: 40px;
+}
+
+.ex > p {
+  color: white;
+  font-size: larger;
+  line-height: 1.7;
+}
+
+.right {
+  width: 40%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 500px;
+}
+
+.right-image {
+  width: 400px;
+  height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.right-image > img {
+  width: 100%;
+}
+
+.bottom {
+  width: 100%;
+}
+
+.bottom > hr {
+  width: calc(100% - 80px);
+  margin: 0 40px;
+  border-color: gray;
+}
+
+.bottom-content {
+  padding: 20px 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.bottom-left {
+  display: flex;
+  flex-direction: column;
+  margin: 0 40px;
+  width: 400px;
+}
+
+.bottom-title h2 {
+  color: white;
+}
+
+.bottom-high {
+  color: #03ff40;
+}
+
+.bottom-ex > p {
+  color: white;
+  margin: 8px 0 0;
+  line-height: 1.4;
+  font-size: 14px;
+}
+
+.bottom-secure {
+  margin-top: 10px;
+  color: lightslategray;
+  font-size: 13px;
+}
+
+.bottom-topics {
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+  margin-right: 50px;
+}
+
+.bottom-topics > div {
+  flex: 1;
+  margin: 20px;
+}
+
+.bottom-topics h3 {
+  color: white;
+}
+
+.bottom-web > ul > li,
+.bottom-app > ul > li,
+.bottom-network > ul > li {
+  color: white;
+  margin: 10px 0;
+  font-size: 13px;
+}
+
+/* 팀원 소개 섹션 */
+.team-intro-section {
+  width: 100%;
+  padding: 80px 0;
+  text-align: center;
+}
+
+.team-title {
+  margin-bottom: 60px;
+  font-size: 2.5rem;
+  color: #ffffff;
+  text-shadow: 0 0 20px rgba(3, 255, 64, 0.3);
+}
+
+.team-grid {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.team-card {
+  width: 320px;
+  padding: 40px 20px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  text-align: center;
+}
+
+.team-profile-glow {
+  width: 150px;
+  height: 150px;
+  margin: 0 auto 25px;
+  border-radius: 50%;
+  border: 3px solid #03ff40;
+  box-shadow: 0 0 20px rgba(3, 255, 64, 0.4);
+  overflow: hidden;
+}
+
+.team-profile-glow img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.team-name {
+  font-size: 1.5rem;
+  margin-bottom: 8px;
+  transition: 0.3s;
+}
+
+.team-role {
+  color: #03ff40;
+  font-weight: bold;
+  margin-bottom: 5px;
+  transition: 0.3s;
+}
+
+.team-univ {
+  color: #cccccc;
+  font-size: 14px;
+  margin-bottom: 20px;
+  transition: 0.3s;
+}
+
+.team-links {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 10px;
+}
+
+.icon-btn img {
+  width: 35px;
+  height: 35px;
+  object-fit: contain;
+  transition: all 0.3s ease;
+  filter: drop-shadow(0 0 2px rgba(3, 255, 64, 0.2));
+}
+
+.icon-btn:hover img {
+  transform: translateY(-5px) scale(1.1);
+  filter: drop-shadow(0 0 10px rgba(3, 255, 64, 0.9));
+}
+
+.team-card:hover {
+  background-color: white !important;
+  transform: translateY(-15px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.team-card:hover .team-name,
+.team-card:hover .team-univ {
+  color: #1a1a1a !important;
+}
+
+.team-card:hover .team-role {
+  color: #02c031 !important;
+}
+
+.box-container {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 1600px;
+  width: 100%;
+  gap: 40px;
+  margin: 80px auto;
+  padding: 0 40px;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.box {
+  width: 400px;
+  min-height: 260px;
+  height: auto;
+  font-size: 14px;
+  border-radius: 12px;
+  background-color: black;
+  padding: 40px 30px 20px 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  overflow: visible;
+}
+
+.desc {
+  display: none;
+  margin: 0;
+  color: grey;
+}
+
+p {
+  color: grey;
+  font-size: 18px;
+}
+
+.box a {
+  color: white;
+}
+
+.toggle {
+  color: #eaff00;
+  font-size: 14px;
+  cursor: pointer;
+  display: block;
+  text-align: center;
+  width: 100%;
+  margin-top: auto;
+  margin-bottom: 10px;
+}
+
+.category-tag1 {
+  margin-left: auto;
+  margin-right: -10px;
+  color: #03ff40;
+  font-size: 15px;
+  background-color: #1a2e1a;
+  padding: 4px 10px;
+  border-radius: 20px;
+  margin-top: -15px;
+}
+
+.category-tag2 {
+  margin-left: auto;
+  margin-right: -10px;
+  color: #038eff;
+  font-size: 15px;
+  background-color: #1a1a2e;
+  padding: 4px 10px;
+  border-radius: 20px;
+  margin-top: -15px;
+}
+
+.category-tag3 {
+  margin-left: auto;
+  margin-right: -10px;
+  color: #ff0303;
+  font-size: 15px;
+  background-color: #2e1a1a;
+  padding: 4px 10px;
+  border-radius: 20px;
+  margin-top: -15px;
+}
+
+.box-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.box p {
+  margin-top: 25px;
+  margin-bottom: 20px;
+}
+
+@media (max-width: 768px) {
+  body {
+    width: 100%;
+    height: auto;
+    padding-top: 80px;
+  }
+
+  .navbar > .container > .logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .nav {
+    display: none;
+  }
+
+  .more {
+    display: flex;
+  }
+
+  .mobile-menu {
+    display: flex;
+  }
+
+  .top {
+    display: none;
+  }
+
+  .content {
+    flex-direction: column;
+  }
+
+  .left {
+    width: 100%;
+    min-height: auto;
+    order: 2;
+  }
+
+  .left-content {
+    width: 100%;
+    margin: 20px 20px 40px;
+  }
+
+  .title {
+    justify-content: center;
+    text-align: center;
+  }
+
+  .title > h1 {
+    font-size: 60px;
+    text-align: center;
+    width: 100%;
+    line-height: 1.25;
+  }
+
+  .ex > p {
+    text-align: center;
+    line-height: 1.5;
+  }
+
+  .right {
+    width: 100%;
+    order: 1;
+    min-height: auto;
+    overflow: hidden;
+  }
+
+  .right-image {
+    width: auto;
+    overflow: hidden;
+    mask-image: linear-gradient(
+      to bottom,
+      transparent 0%,
+      black 15%,
+      black 80%,
+      transparent 100%
+    );
+    -webkit-mask-image: linear-gradient(
+      to bottom,
+      transparent 0%,
+      black 15%,
+      black 80%,
+      transparent 100%
+    );
+    display: block;
+    transform: scale(1.5);
+    transform-origin: center top;
+  }
+
+  .right-image > img {
+    width: 100%;
+    display: block;
+  }
+
+  .bottom {
+    width: 100%;
+    display: block;
+  }
+
+  .bottom > hr {
+    width: calc(100% - 40px);
+    margin: 0 20px;
+  }
+
+  .bottom-topics {
+    display: none;
+  }
+
+  .bottom-left {
+    width: calc(100% - 40px);
+    margin: 10px 20px;
+  }
+  .team-grid {
+    flex-direction: column;
+    align-items: center;
+  }
+  .team-title {
+    font-size: 2rem;
+  }
+}
+
+/* 기존 style.css 내용들... (위에 그대로 두시면 됩니다) */
+/* 아래 내용부터 맨 밑에 추가해 주세요! */
+
+/* =========================================
+   추가된 UI 요소 스타일 (필터, 시계, 요약 모달)
+========================================= */
+
+/* 1. 카테고리 필터 & 요약 버튼 */
+.filter-container {
+  display: flex;
+  width: 100%;
+  flex-basis: 100%; /* 카드 위에서 한 줄을 꽉 채우게 만듭니다 */
+  margin: 0 50px 20px 50px;
+  gap: 15px;
+  align-items: center;
+}
+
+.filter-btn {
+  padding: 8px 20px;
+  border-radius: 20px;
+  border: 1px solid #444;
+  background-color: #1e1e2f;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+/* 필터 호버 효과 (자바스크립트 없이 CSS로 처리) */
+.filter-btn:hover {
+  border-color: #fff;
+}
+.filter-btn[data-filter='웹']:hover {
+  border-color: #03ff40;
+  color: #03ff40;
+}
+.filter-btn[data-filter='앱']:hover {
+  border-color: #038eff;
+  color: #038eff;
+}
+.filter-btn[data-filter='네트워크']:hover {
+  border-color: #ff0303;
+  color: #ff0303;
+}
+
+/* 2. 요약 버튼 특별 디자인 */
+.summary-btn {
+  padding: 8px 20px;
+  border-radius: 20px;
+  border: 1px solid #ff0303;
+  background-color: rgba(255, 3, 3, 0.1);
+  color: #ff0303;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+  margin-left: 10px;
+}
+.summary-btn:hover {
+  background-color: #ff0303;
+  color: #fff;
+  box-shadow: 0 0 15px rgba(255, 3, 3, 0.5);
+}
+
+/* 3. 시스템 시계 */
+.clock-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  flex-basis: 100%;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+#systemClock {
+  color: #03ff40;
+  font-size: 22px;
+  font-weight: bold;
+  font-family: monospace;
+  padding: 12px 24px;
+  border: 2px solid #03ff40;
+  border-radius: 8px;
+  background-color: rgba(3, 255, 64, 0.1);
+  letter-spacing: 1px;
+}
+
+/* 4. 요약 팝업 (모달) 기본 뼈대 */
+.modal-overlay {
+  display: none; /* 평소엔 숨김 */
+  position: fixed;
+  inset: 0; /* top:0, left:0, right:0, bottom:0 랑 같음 */
+  background-color: rgba(0, 0, 0, 0.85);
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
+}
+
+/* JS에서 'show' 클래스를 추가하면 보이게 됨 */
+.modal-overlay.show {
+  display: flex;
+}
+
+.modal-content {
+  position: relative;
+  width: 90%;
+  max-width: 800px;
+  height: 500px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 0 40px rgba(255, 3, 3, 0.4); /* 기본 빨간 그림자 */
+  cursor: pointer;
+  transition: box-shadow 0.4s ease;
+}
+
+/* 5. 모달 배경 이미지 전환 (Opacity 활용) */
+.modal-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  transition: opacity 0.4s ease;
+}
+.bg-danger {
+  background-image: url('pexels-eduardo-romero-817034-5104823.jpg');
+  z-index: 1;
+}
+.bg-secure {
+  background-image: url('pexels-cao-huy-753105-16708400.jpg');
+  z-index: 2;
+  opacity: 0;
+} /* 기본으로 숨김 */
+
+/* 6. 모달 텍스트 전환 */
+.modal-text-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  background-color: rgba(0, 0, 0, 0.75); /* 어두운 유리 효과 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.text-layer {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 40px;
+  width: 100%;
+  height: 100%;
+  transition: opacity 0.4s ease;
+}
+
+.text-danger {
+  opacity: 1;
+} /* 기본으로 보임 */
+.text-secure {
+  opacity: 0;
+} /* 기본으로 숨김 */
+
+/* 텍스트 상세 디자인 */
+.danger-title {
+  color: #ff0303;
+  margin-bottom: 30px;
+  font-size: 28px;
+  text-shadow: 0 0 15px rgba(255, 0, 0, 0.8);
+  text-align: center;
+}
+.danger-list p {
+  color: #eee;
+  font-size: 18px;
+  line-height: 2;
+  text-align: left;
+}
+.danger-list strong {
+  color: #ff4444;
+  font-size: 20px;
+  margin-right: 10px;
+}
+
+.secure-title {
+  color: #03ff40;
+  margin-bottom: 30px;
+  font-size: 28px;
+  text-shadow: 0 0 15px rgba(3, 255, 64, 0.8);
+  text-align: center;
+}
+.secure-list p {
+  color: #eee;
+  font-size: 18px;
+  line-height: 2;
+  text-align: left;
+}
+.secure-list strong {
+  color: #03ff40;
+  font-size: 20px;
+  margin-right: 10px;
+}
+
+/* 🌟 마우스를 올리거나(Hover), 터치해서 'secure-mode' 클래스가 붙었을 때의 변화 🌟 */
+.modal-content:hover,
+.modal-content.secure-mode {
+  box-shadow: 0 0 50px rgba(3, 255, 64, 0.5);
+}
+.modal-content:hover .bg-secure,
+.modal-content.secure-mode .bg-secure {
+  opacity: 1;
+}
+.modal-content:hover .text-danger,
+.modal-content.secure-mode .text-danger {
+  opacity: 0;
+}
+.modal-content:hover .text-secure,
+.modal-content.secure-mode .text-secure {
+  opacity: 1;
+}
+
+/* 모바일 대응 추가 */
+@media (max-width: 768px) {
+  .filter-container {
+    margin: 0 20px 20px 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .danger-title,
+  .secure-title {
+    font-size: 20px;
+  }
+  .danger-list p,
+  .secure-list p {
+    font-size: 14px;
+  }
+}

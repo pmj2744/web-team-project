@@ -19,7 +19,6 @@
         <ul class="nav">
           <li><a href="index.html">Home</a></li>
           <li><a href="security.html">Security</a></li>
-          <li><a href="quiz.html">Quiz</a></li>
           <li><a href="team.html">Team</a></li>
         </ul>
       </div>
@@ -28,10 +27,18 @@
     <div class="mobile-menu" id="mobileMenu">
       <a href="index.html">Home</a>
       <a href="security.html">Security</a>
-      <a href="quiz.html">Quiz</a>
       <a href="team.html">Team</a>
     </div>
+
     <div class="box-container">
+      <div class="filter-container">
+        <button class="filter-btn" data-filter="전체">전체</button>
+        <button class="filter-btn" data-filter="웹">웹</button>
+        <button class="filter-btn" data-filter="앱">앱</button>
+        <button class="filter-btn" data-filter="네트워크">네트워크</button>
+        <button class="summary-btn" id="summaryBtn">요약 보기</button>
+      </div>
+
       <div class="box">
         <div class="box-top">
           <h1>DDOS 공격</h1>
@@ -81,10 +88,7 @@
 
       <div class="box">
         <div class="box-top">
-          <h1>
-            Broken Access<br>Control
-            <br />
-          </h1>
+          <h1>Broken Access Control</h1>
           <span class="category-tag2">앱</span>
         </div>
         <p>#권한 #접근제어 #사용자</p>
@@ -99,11 +103,7 @@
 
       <div class="box">
         <div class="box-top">
-          <h1>
-            Insecure<br>Design
-            <br />
-          </h1>
-          <br />
+          <h1>Insecure Design</h1>
           <span class="category-tag2">앱</span>
         </div>
         <p>#철저한 #효율 #설계</p>
@@ -117,7 +117,7 @@
 
       <div class="box">
         <div class="box-top">
-          <h1>Vulnerable and Outdated </h1>
+          <h1>Vulnerable and Outdated</h1>
           <span class="category-tag2">앱</span>
         </div>
         <p>#모니터링 #취약점 #최신화</p>
@@ -171,6 +171,11 @@
           보안 시스템입니다.
         </p>
       </div>
+
+      <div class="clock-container">
+        <div id="systemClock">[SYSTEM ACTIVE] 00:00:00</div>
+      </div>
+
       <div class="bottom">
         <hr />
         <div class="bottom-content">
@@ -220,41 +225,53 @@
       </div>
     </div>
 
-    <script>
-      document.querySelectorAll('.toggle').forEach((btn) => {
-        btn.addEventListener('click', function () {
-          const box = this.closest('.box')
-          const desc = box.querySelector('.desc')
-          const isHidden =
-            desc.style.display === 'none' || desc.style.display === ''
+    <div class="modal-overlay" id="summaryModal">
+      <div class="modal-content" id="modalContent">
+        <div class="modal-bg bg-danger"></div>
+        <div class="modal-bg bg-secure"></div>
 
-          document.querySelectorAll('.box').forEach((otherBox) => {
-            const otherDesc = otherBox.querySelector('.desc')
-            const otherToggle = otherBox.querySelector('.toggle')
+        <div class="modal-text-overlay">
+          <div class="text-layer text-danger">
+            <h2 class="danger-title">
+              [SYSTEM DANGER] 방치된 환경의 치명적 위협
+            </h2>
+            <div class="danger-list">
+              <p>
+                <strong>[Web]</strong> DDoS 폭주 / API 데이터 무단 탈취 / XSS
+                감염
+              </p>
+              <p>
+                <strong>[App]</strong> 권한 무단 획득 / 설계 결함 악용 / 구버전
+                취약점
+              </p>
+              <p>
+                <strong>[Network]</strong> 비인가 침입 / 가짜 연결 폭주 / 방화벽
+                무력화
+              </p>
+            </div>
+          </div>
 
-            otherDesc.style.display = 'none'
-            otherToggle.textContent = '자세히 보기 ▾'
-          })
+          <div class="text-layer text-secure">
+            <h2 class="secure-title">[SYSTEM SECURE] SecureWeb 방어 가동</h2>
+            <div class="secure-list">
+              <p>
+                <strong>[Web]</strong> 비정상 트래픽 차단 / 입력값 철저 검증 /
+                스크립트 원천 방어
+              </p>
+              <p>
+                <strong>[App]</strong> 무결점 접근 제어(ACL) / 시큐어 코딩 /
+                실시간 모니터링
+              </p>
+              <p>
+                <strong>[Network]</strong> 허가된 IP만 통과 / 암호화 연결 / 철통
+                방화벽 구축
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
-          if (isHidden) {
-            desc.style.display = 'block'
-            this.textContent = '접기 ▴'
-          }
-        })
-      })
-
-      const btn = document.getElementById('menuBtn')
-      const menu = document.getElementById('mobileMenu')
-
-      btn.addEventListener('click', () => {
-        menu.classList.toggle('open')
-      })
-
-      document.addEventListener('click', (e) => {
-        if (!btn.contains(e.target) && !menu.contains(e.target)) {
-          menu.classList.remove('open')
-        }
-      })
-    </script>
+    <script src="javascrpit.js"></script>
   </body>
 </html>
