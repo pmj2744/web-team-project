@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SecureWeb | Quiz</title>
@@ -165,30 +165,30 @@
             border: 1px solid #2D3748;
         }
     </style>
-  </head>
-  <body>
+</head>
+<body>
     <nav class="navbar">
-      <div class="container">
+    <div class="container">
         <button class="more" id="menuBtn" aria-label="메뉴 열기">
-          <span></span><span></span><span></span>
+        <span></span><span></span><span></span>
         </button>
         <div class="logo">
-          <span class="logo-def">Secure </span
-          ><span class="logo-high">Web</span>
+        <span class="logo-def">Secure </span
+        ><span class="logo-high">Web</span>
         </div>
         <ul class="nav">
-          <li><a href="index.html">Home</a></li>
-          <li><a href="security.html">Security</a></li>
-          <li><a href="quiz.html" class="active">Quiz</a></li>
-          <li><a href="team.html">Team</a></li>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="security.html">Security</a></li>
+        <li><a href="quiz.html" class="active">Quiz</a></li>
+        <li><a href="team.html">Team</a></li>
         </ul>
-      </div>
+    </div>
     </nav>
     <div class="mobile-menu" id="mobileMenu">
-      <a href="index.html">Home</a>
-      <a href="security.html">Security</a>
-      <a href="quiz.html">Quiz</a>
-      <a href="team.html">Team</a>
+    <a href="index.html">Home</a>
+    <a href="security.html">Security</a>
+    <a href="quiz.html">Quiz</a>
+    <a href="team.html">Team</a>
     </div>
 
     <div class="quiz-section-wrapper">
@@ -233,7 +233,6 @@
                     <div style="color: #A0AEC0; font-size: 12px; text-transform: uppercase; letter-spacing: 1px;">최종 점수</div>
                     <div class="score-num" id="final-percentage">0%</div>
                     <div style="color: #A0AEC0;" id="final-count">(0 / 9 문제 맞춤)</div>
-                    <div class="badge-text" id="badge-text">등급: -</div>
                 </div>
 
                 <div style="text-align: center;">
@@ -261,19 +260,19 @@
         const quizData = [
             {
                 question: "1. 여러 대의 좀비 PC를 동원해 특정 서버나 웹사이트에 대량의 트래픽을 한꺼번에 보내 서비스를 마비시키는 공격은?",
-                options: ["API Injection", "XSS", "DDoS", "Broken Access Control"],
+                options: ["API Injection", "XSS", "DDoS 공격", "Broken Access Control"],
                 answer: 2,
                 explanation: "DDoS 공격은 집단적으로 트래픽을 몰아넣어 통로를 가로막고 시스템을 마비시킵니다."
             },
             {
                 question: "2. API 엔드포인트를 통해 악의적인 데이터를 주입하여 서버 로직을 조작하거나 데이터베이스를 탈취하는 취약점은?",
-                options: ["API Injection", "DDoS", "Insecure Design", "Firewall"],
+                options: ["API Injection", "DDoS 공격", "Insecure Design", "Firewall"],
                 answer: 0,
                 explanation: "입력값 검증 누락 시 공격자가 데이터를 주입해 로직을 조작하는 취약점입니다."
             },
             {
                 question: "3. 웹사이트에 악의적인 스크립트를 삽입하여, 방문한 사용자의 브라우저에서 쿠키 탈취 등을 유도하는 공격은?",
-                options: ["DDoS", "XSS", "Broken Access Control", "Firewall"],
+                options: ["DDoS 공격", "XSS", "Broken Access Control", "Firewall"],
                 answer: 1,
                 explanation: "XSS는 방문자의 브라우저에서 악성 코드가 실행되도록 하는 공격 방식입니다."
             },
@@ -475,64 +474,56 @@
             const pct = Math.round((score / quizData.length) * 100);
             finalPercentage.innerText = pct + "%";
             finalCount.innerText = "(" + score + " / " + quizData.length + " 문제 맞춤)";
-            let bName = "";
-            let bColor = "";
-            if (pct === 100) { bName = "보안"; bColor = "#00FF41"; }
-            else if (pct >= 80) { bName = "우수"; bColor = "#3182CE"; }
-            else if (pct >= 60) { bName = "기초"; bColor = "#DD6B20"; }
-            else { bName = "다시 배우기"; bColor = "#E53E3E"; }
-            badgeText.innerHTML = "등급: <span style='color: " + bColor + ";'>" + bName + "</span>";
         }
     </script>
-  </body>
+</body>
 </html>
 \
 
     <div class="bottom">
-      <hr />
-      <div class="bottom-content">
+    <hr />
+    <div class="bottom-content">
         <div class="bottom-left">
-          <div class="bottom-title">
+        <div class="bottom-title">
             <h2>Secure <span class="bottom-high">Web</span></h2>
-          </div>
-          <div class="bottom-ex">
+        </div>
+        <div class="bottom-ex">
             <p>
-              보안과 웹 개발의 교차점에서 미래 기술을<br />탐구하는 팀
-              프로젝트입니다.
+            보안과 웹 개발의 교차점에서 미래 기술을<br />탐구하는 팀
+            프로젝트입니다.
             </p>
-          </div>
-          <br />
-          <div class="bottom-secure">2026 중부대학교 정보보호학과</div>
+        </div>
+        <br />
+        <div class="bottom-secure">2026 중부대학교 정보보호학과</div>
         </div>
         <div class="bottom-topics">
-          <div class="bottom-web">
+        <div class="bottom-web">
             <h3>웹 보안</h3>
             <br />
             <ul>
-              <li>DDos 공격</li>
-              <li>API Injection</li>
-              <li>XSS</li>
+            <li>DDos 공격</li>
+            <li>API Injection</li>
+            <li>XSS</li>
             </ul>
-          </div>
-          <div class="bottom-app">
+        </div>
+        <div class="bottom-app">
             <h3>애플리케이션 보안</h3>
             <br />
             <ul>
-              <li>Broken Access Control</li>
-              <li>Insecure Design</li>
-              <li>Vulnerable and Outdated Components</li>
+            <li>Broken Access Control</li>
+            <li>Insecure Design</li>
+            <li>Vulnerable and Outdated Components</li>
             </ul>
-          </div>
-          <div class="bottom-network">
+        </div>
+        <div class="bottom-network">
             <h3>네트워크 보안</h3>
             <br />
             <ul>
-              <li>IP Header & ACL</li>
-              <li>Secure Connection</li>
-              <li>Firewall</li>
+            <li>IP Header & ACL</li>
+            <li>Secure Connection</li>
+            <li>Firewall</li>
             </ul>
-          </div>
         </div>
-      </div>
+        </div>
     </div>
-ㄴㄴ
+    </div>
