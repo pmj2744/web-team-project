@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SecureWeb</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="container">
+        <button class="more" id="menuBtn" aria-label="메뉴 열기">
+          <span></span><span></span><span></span>
+        </button>
+        <div class="logo">
+          <span class="logo-def">Secure </span
+          ><span class="logo-high">Web</span>
+        </div>
+        <ul class="nav">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="security.html">Security</a></li>
+          <li><a href="team.html">Team</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="index.html">Home</a>
+      <a href="security.html">Security</a>
+      <a href="team.html">Team</a>
+    </div>
+
+    <div class="main">
+      <div class="top"></div>
+      <div class="content">
+        <div class="left">
+          <div class="left-content">
+            <div class="title">
+              <h1>
+                <span class="title-def">디지털 세상을<br /></span>
+                <span class="title-high">안전하게 </span
+                ><span class="title-def">지키는</span><br />
+                <span class="title-def">보안 기술 탐구</span>
+              </h1>
+            </div>
+            <div class="ex">
+              <p>
+                웹 보안부터 네트워크 보안, 애플리케이션 보안까지.<br />
+                4차 산업혁명 시대의 핵심 보안 기술을 체계적으로<br />
+                탐구하고 정리한 팀 프로젝트 입니다.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="right">
+          <div class="right-content">
+            <div class="right-image">
+              <img src="img_1.png" alt="locker" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="bottom">
+        <hr />
+        <div class="bottom-content">
+          <div class="bottom-left">
+            <div class="bottom-title">
+              <h2>Secure <span class="bottom-high">Web</span></h2>
+            </div>
+            <div class="bottom-ex">
+              <p>
+                보안과 웹 개발의 교차점에서 미래 기술을<br />탐구하는 팀
+                프로젝트입니다.
+              </p>
+            </div>
+            <br />
+            <div class="bottom-secure">2026 중부대학교 정보보호학과</div>
+          </div>
+          <div class="bottom-topics">
+            <div class="bottom-web">
+              <h3>웹 보안</h3>
+              <br />
+              <ul>
+                <li>DDos 공격</li>
+                <li>API Injection</li>
+                <li>XSS</li>
+              </ul>
+            </div>
+            <div class="bottom-app">
+              <h3>애플리케이션 보안</h3>
+              <br />
+              <ul>
+                <li>Broken Access Control</li>
+                <li>Insecure Design</li>
+                <li>Vulnerable and Outdated Components</li>
+              </ul>
+            </div>
+            <div class="bottom-network">
+              <h3>네트워크 보안</h3>
+              <br />
+              <ul>
+                <li>IP Header & ACL</li>
+                <li>Secure Connection</li>
+                <li>Firewall</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const btn = document.getElementById('menuBtn')
+      const menu = document.getElementById('mobileMenu')
+      btn.addEventListener('click', () => {
+        menu.classList.toggle('open')
+      })
+      document.addEventListener('click', (e) => {
+        if (!btn.contains(e.target) && !menu.contains(e.target)) {
+          menu.classList.remove('open')
+        }
+      })
+    </script>
+  </body>
+</html>

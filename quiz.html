@@ -1,0 +1,538 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SecureWeb | Quiz</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+        /* 퀴즈 본문에 최적화된 다크 테마 보조 서식 */
+        .quiz-body-wrapper {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #FFFFFF;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+        }
+
+        .quiz-container {
+            background-color: #131A3E;
+            width: 100%;
+            max-width: 650px;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            border: 1px solid #1E295D;
+        }
+
+        @media (max-width: 480px) {
+            .quiz-container { padding: 20px; }
+            .quiz-main-title { font-size: 24px !important; }
+            .question-text { font-size: 18px !important; }
+            .option-btn { padding: 12px !important; font-size: 14px; }
+        }
+
+        .hidden { display: none !important; }
+
+        .quiz-main-title {
+            color: #00FF41;
+            text-align: center;
+            margin-bottom: 15px;
+            font-size: 32px;
+            font-weight: bold;
+        }
+
+        .description {
+            text-align: center;
+            color: #A0AEC0;
+            margin-bottom: 30px;
+            line-height: 1.6;
+            font-size: 15px;
+        }
+
+        .progress-container { margin-bottom: 20px; }
+        .status-text {
+            display: flex;
+            justify-content: space-between;
+            color: #A0AEC0;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+        .progress-bar {
+            background-color: #2D3748;
+            height: 8px;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            background-color: #00FF41;
+            width: 0%;
+            height: 100%;
+            transition: width 0.3s ease;
+        }
+
+        .question-text {
+            font-size: 22px;
+            margin-bottom: 25px;
+            line-height: 1.4;
+            color: #FFFFFF;
+        }
+
+        .options-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+
+        .option-btn {
+            background-color: #1A234D;
+            color: #FFFFFF;
+            border: 1px solid #2D3748;
+            padding: 16px;
+            border-radius: 10px;
+            text-align: left;
+            font-size: 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            width: 100%;
+            transition: all 0.2s;
+        }
+
+        .option-btn.selected { border-color: #00FF41; background-color: #1A3A3A; }
+        .option-btn.correct { border-color: #2ECC71; background-color: rgba(46, 204, 113, 0.2); color: #2ECC71; font-weight: bold; }
+        .option-btn.wrong { border-color: #E74C3C; background-color: rgba(231, 76, 60, 0.2); color: #E74C3C; }
+
+        .feedback-box {
+            padding: 15px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            line-height: 1.5;
+            color: #FFFFFF;
+        }
+
+        .action-container {
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .action-btn {
+            background-color: #00FF41;
+            color: #0A0E27;
+            border: none;
+            padding: 12px 30px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .action-btn:disabled {
+            background-color: #4A5568;
+            color: #A0AEC0;
+            cursor: not-allowed;
+        }
+
+        .score-box {
+            background-color: #1A234D;
+            padding: 30px;
+            border-radius: 12px;
+            max-width: 320px;
+            margin: 25px auto;
+            border: 1px solid #1E295D;
+            text-align: center;
+        }
+
+        .score-num {
+            font-size: 48px;
+            font-weight: 800;
+            color: #FFFFFF;
+            margin-bottom: 5px;
+        }
+
+        .badge-text {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 6px 16px;
+            background-color: #0A0E27;
+            border-radius: 20px;
+            font-weight: bold;
+            border: 1px solid #2D3748;
+        }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="container">
+        <button class="more" id="menuBtn" aria-label="메뉴 열기">
+          <span></span><span></span><span></span>
+        </button>
+        <div class="logo">
+          <span class="logo-def">Secure </span
+          ><span class="logo-high">Web</span>
+        </div>
+        <ul class="nav">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="security.html">Security</a></li>
+          <li><a href="quiz.html" class="active">Quiz</a></li>
+          <li><a href="team.html">Team</a></li>
+        </ul>
+      </div>
+    </nav>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="index.html">Home</a>
+      <a href="security.html">Security</a>
+      <a href="quiz.html">Quiz</a>
+      <a href="team.html">Team</a>
+    </div>
+
+    <div class="quiz-section-wrapper">
+        <div class="quiz-container" style="margin: 30px auto;">
+            
+            <div id="start-screen">
+                <div class="quiz-main-title">보안 지식 퀴즈</div>
+                <p class="description">
+                    Security 페이지에서 학습한 9가지 보안 개념을 테스트해보세요!<br>
+                    각 문제는 4지선다형으로 구성되어 있으며, 정답을 선택한 후 '정답 제출' 버튼을 눌러주세요.<br>
+                </p>
+                <div style="text-align: center;">
+                    <button class="action-btn" id="start-btn">퀴즈 시작하기</button>
+                </div>
+            </div>
+
+            <div id="quiz-screen" class="hidden">
+                <div class="progress-container">
+                    <div class="status-text">
+                        <span id="question-counter">문제 1 / 9</span>
+                        <span id="score-counter">현재 점수: 0점</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progress-fill"></div>
+                    </div>
+                </div>
+
+                <div class="question-text" id="question-text">질문 내용 로딩 중...</div>
+                <div class="options-grid" id="options-container"></div>
+                <div id="quiz-feedback-area"></div>
+
+                <div class="action-container">
+                    <button class="action-btn" id="next-btn" disabled>정답 제출</button>
+                </div>
+            </div>
+
+            <div id="result-screen" class="hidden">
+                <div class="quiz-main-title" style="text-align: center;">테스트 완료!</div>
+                <p class="description" style="margin-bottom: 15px; text-align: center;">학습 결과를 확인해보세요.</p>
+                
+                <div class="score-box">
+                    <div style="color: #A0AEC0; font-size: 12px; text-transform: uppercase; letter-spacing: 1px;">최종 점수</div>
+                    <div class="score-num" id="final-percentage">0%</div>
+                    <div style="color: #A0AEC0;" id="final-count">(0 / 9 문제 맞춤)</div>
+                    <div class="badge-text" id="badge-text">등급: -</div>
+                </div>
+
+                <div style="text-align: center;">
+                    <button class="action-btn" id="restart-btn" style="background-color: transparent; border: 2px solid #00FF41; color: #00FF41;">다시 도전하기</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 모바일 메뉴 토글
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        if (menuBtn && mobileMenu) {
+            menuBtn.onclick = function() {
+                if(mobileMenu.style.display === 'flex') {
+                    mobileMenu.style.display = 'none';
+                } else {
+                    mobileMenu.style.display = 'flex';
+                }
+            };
+        }
+
+        // 퀴즈 데이터
+        const quizData = [
+            {
+                question: "1. 여러 대의 좀비 PC를 동원해 특정 서버나 웹사이트에 대량의 트래픽을 한꺼번에 보내 서비스를 마비시키는 공격은?",
+                options: ["API Injection", "XSS", "DDoS", "Broken Access Control"],
+                answer: 2,
+                explanation: "DDoS 공격은 집단적으로 트래픽을 몰아넣어 통로를 가로막고 시스템을 마비시킵니다."
+            },
+            {
+                question: "2. API 엔드포인트를 통해 악의적인 데이터를 주입하여 서버 로직을 조작하거나 데이터베이스를 탈취하는 취약점은?",
+                options: ["API Injection", "DDoS", "Insecure Design", "Firewall"],
+                answer: 0,
+                explanation: "입력값 검증 누락 시 공격자가 데이터를 주입해 로직을 조작하는 취약점입니다."
+            },
+            {
+                question: "3. 웹사이트에 악의적인 스크립트를 삽입하여, 방문한 사용자의 브라우저에서 쿠키 탈취 등을 유도하는 공격은?",
+                options: ["DDoS", "XSS", "Broken Access Control", "Firewall"],
+                answer: 1,
+                explanation: "XSS는 방문자의 브라우저에서 악성 코드가 실행되도록 하는 공격 방식입니다."
+            },
+            {
+                question: "4. 사용자가 주어진 권한을 벗어나 타인의 데이터를 무단으로 열람, 수정, 삭제할 수 있게 되는 보안 취약점은?",
+                options: ["Insecure Design", "Vulnerable Components", "Broken Access Control", "Secure Connection"],
+                answer: 2,
+                explanation: "액세스 제어가 취약하면 무단으로 데이터를 조작할 수 있는 권한 사고가 발생합니다."
+            },
+            {
+                question: "5. 설계 단계에서 보안을 고려하지 않아, 개발 완료 후 코드를 수정해도 보안 취약점을 완벽히 방어하기 어려운 항목은?",
+                options: ["Insecure Design", "XSS", "DDoS", "API Injection"],
+                answer: 0,
+                explanation: "설계 단계의 결함은 구현 단계에서의 수정만으로는 해결하기 어렵습니다."
+            },
+            {
+                question: "6. 불필요한 기능이나 취약한 구버전 소프트웨어를 방치하여 발생하는 보안 위협은?",
+                options: ["API Injection", "Vulnerable and Outdated Components", "Firewall", "Access Control"],
+                answer: 1,
+                explanation: "오래된 컴포넌트는 알려진 취약점이 많으므로 항상 최신화해야 합니다."
+            },
+            {
+                question: "7. IP 주소를 확인하여 허락되지 않은 외부인의 접속을 네트워크 입구에서부터 막는 기술은?",
+                options: ["XSS Filter", "Insecure Design", "IP Header & ACL", "TCP Session"],
+                answer: 2,
+                explanation: "IP 헤더 정보와 ACL 규칙을 통해 비인가 트래픽을 차단합니다."
+            },
+            {
+                question: "8. TCP 연결 과정을 응용하여 진짜 사용자만 서버에 접속할 수 있도록 걸러내는 통로 보호 기술은?",
+                options: ["Secure Connection", "API Injection", "Broken Access Control", "DDoS Attack"],
+                answer: 0,
+                explanation: "가짜 연결 요청을 판별하여 진짜 연결만 수립하도록 돕는 기술입니다."
+            },
+            {
+                question: "9. 외부의 침입으로부터 내부 네트워크를 보호하기 위해 허가된 통신만 통과시키는 전통적인 경계 시스템은?",
+                options: ["DDoS Filter", "Firewall", "ACL Node", "API Gateway"],
+                answer: 1,
+                explanation: "방화벽은 미리 정의된 보안 규칙에 따라 네트워크 트래픽을 제어합니다."
+            }
+        ];
+
+        let currentIdx = 0;
+        let score = 0;
+        let selectedAnswer = null;
+        let isSubmitted = false;
+
+        const startScreen = document.getElementById('start-screen');
+        const quizScreen = document.getElementById('quiz-screen');
+        const resultScreen = document.getElementById('result-screen');
+        const startBtn = document.getElementById('start-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const restartBtn = document.getElementById('restart-btn');
+        const questionCounter = document.getElementById('question-counter');
+        const scoreCounter = document.getElementById('score-counter');
+        const progressFill = document.getElementById('progress-fill');
+        const questionText = document.getElementById('question-text');
+        const optionsContainer = document.getElementById('options-container');
+        const feedbackArea = document.getElementById('quiz-feedback-area');
+        const finalPercentage = document.getElementById('final-percentage');
+        const finalCount = document.getElementById('final-count');
+        const badgeText = document.getElementById('badge-text');
+
+        startBtn.onclick = function() { startQuiz(); };
+        nextBtn.onclick = function() { handleAction(); };
+        restartBtn.onclick = function() { startQuiz(); };
+
+        function startQuiz() {
+            currentIdx = 0;
+            score = 0;
+            selectedAnswer = null;
+            isSubmitted = false;
+            startScreen.className = 'hidden';
+            resultScreen.className = 'hidden';
+            quizScreen.className = '';
+            showQuestion();
+        }
+
+        function showQuestion() {
+            selectedAnswer = null;
+            isSubmitted = false;
+            nextBtn.innerText = "정답 제출";
+            nextBtn.disabled = true;
+            feedbackArea.innerHTML = "";
+
+            const currentQuiz = quizData[currentIdx];
+            questionCounter.innerText = "문제 " + (currentIdx + 1) + " / " + quizData.length;
+            scoreCounter.innerText = "현재 점수: " + score + "점";
+            progressFill.style.width = (((currentIdx + 1) / quizData.length) * 100) + "%";
+            questionText.innerText = currentQuiz.question;
+
+            optionsContainer.innerHTML = '';
+            for (let i = 0; i < currentQuiz.options.length; i++) {
+                const button = document.createElement('button');
+                button.className = 'option-btn';
+                // [수정] 보기 번호 제거하고 문항 텍스트만 출력
+                button.innerText = currentQuiz.options[i];
+                
+                button.onmouseover = function() {
+                    if (!isSubmitted && selectedAnswer !== i) {
+                        button.style.backgroundColor = "#232F66";
+                        button.style.borderColor = "#00FF41";
+                    }
+                };
+                button.onmouseout = function() {
+                    if (!isSubmitted && selectedAnswer !== i) {
+                        button.style.backgroundColor = "#1A234D";
+                        button.style.borderColor = "#2D3748";
+                    }
+                };
+                button.onclick = function() { selectOption(i); };
+                optionsContainer.appendChild(button);
+            }
+        }
+
+        function selectOption(idx) {
+            if (isSubmitted) return;
+            selectedAnswer = idx;
+            nextBtn.disabled = false;
+            const buttons = optionsContainer.getElementsByTagName('button');
+            for (let i = 0; i < buttons.length; i++) {
+                if (i === idx) {
+                    buttons[i].className = 'option-btn selected';
+                } else {
+                    buttons[i].className = 'option-btn';
+                }
+            }
+        }
+
+        function handleAction() {
+            const currentQuiz = quizData[currentIdx];
+            const buttons = optionsContainer.getElementsByTagName('button');
+
+            if (!isSubmitted) {
+                isSubmitted = true;
+                
+                // 버튼 상태: 정답은 초록, 오답은 빨강, 나머지는 비활성화
+                for (let i = 0; i < buttons.length; i++) {
+                    buttons[i].disabled = true;
+                    if (i === currentQuiz.answer) {
+                        buttons[i].className = 'option-btn correct';
+                    } else if (i === selectedAnswer) {
+                        buttons[i].className = 'option-btn wrong';
+                    }
+                }
+
+                // [교재 정석] 박스 생성 및 스타일링
+                const fBox = document.createElement('div');
+                fBox.className = 'feedback-box';
+                
+                const fStrong = document.createElement('strong');
+                fStrong.style.display = 'block';
+                fStrong.style.marginBottom = '4px';
+                
+                const fSpan = document.createElement('span');
+                let resultMsg = "";
+
+                //정답 로직 판별 및 메시지/색상 제어
+                if (selectedAnswer === currentQuiz.answer) {
+                    score++;
+                    scoreCounter.innerText = "현재 점수: " + score + "점";
+                    
+                    fStrong.innerText = "✅ 정답입니다!";
+                    fStrong.style.color = "#00FF41";
+                    fBox.style.backgroundColor = "#064e3b";
+                    fBox.style.borderLeft = "4px solid #00FF41";
+                    resultMsg = currentQuiz.explanation;
+                } else {
+                    fStrong.innerText = "❌ 오답입니다!";
+                    fStrong.style.color = "#f87171";
+                    fBox.style.backgroundColor = "#7f1d1d";
+                    fBox.style.borderLeft = "4px solid #f87171";
+                    resultMsg = "정답은 [" + currentQuiz.options[currentQuiz.answer] + "] 입니다. " + currentQuiz.explanation;
+                }
+
+                const textNode = document.createTextNode(resultMsg);
+                fSpan.appendChild(textNode);
+                fBox.appendChild(fStrong);
+                fBox.appendChild(fSpan);
+                feedbackArea.appendChild(fBox);
+
+                if (currentIdx + 1 === quizData.length) {
+                    nextBtn.innerText = "결과 보기";
+                } else {
+                    nextBtn.innerText = "다음 문제";
+                }
+            } else {
+                currentIdx++;
+                if (currentIdx < quizData.length) {
+                    showQuestion();
+                } else {
+                    showResult();
+                }
+            }
+        }
+
+        function showResult() {
+            quizScreen.className = 'hidden';
+            resultScreen.className = '';
+            const pct = Math.round((score / quizData.length) * 100);
+            finalPercentage.innerText = pct + "%";
+            finalCount.innerText = "(" + score + " / " + quizData.length + " 문제 맞춤)";
+            let bName = "";
+            let bColor = "";
+            if (pct === 100) { bName = "보안"; bColor = "#00FF41"; }
+            else if (pct >= 80) { bName = "우수"; bColor = "#3182CE"; }
+            else if (pct >= 60) { bName = "기초"; bColor = "#DD6B20"; }
+            else { bName = "다시 배우기"; bColor = "#E53E3E"; }
+            badgeText.innerHTML = "등급: <span style='color: " + bColor + ";'>" + bName + "</span>";
+        }
+    </script>
+  </body>
+</html>
+\
+
+    <div class="bottom">
+      <hr />
+      <div class="bottom-content">
+        <div class="bottom-left">
+          <div class="bottom-title">
+            <h2>Secure <span class="bottom-high">Web</span></h2>
+          </div>
+          <div class="bottom-ex">
+            <p>
+              보안과 웹 개발의 교차점에서 미래 기술을<br />탐구하는 팀
+              프로젝트입니다.
+            </p>
+          </div>
+          <br />
+          <div class="bottom-secure">2026 중부대학교 정보보호학과</div>
+        </div>
+        <div class="bottom-topics">
+          <div class="bottom-web">
+            <h3>웹 보안</h3>
+            <br />
+            <ul>
+              <li>DDos 공격</li>
+              <li>API Injection</li>
+              <li>XSS</li>
+            </ul>
+          </div>
+          <div class="bottom-app">
+            <h3>애플리케이션 보안</h3>
+            <br />
+            <ul>
+              <li>Broken Access Control</li>
+              <li>Insecure Design</li>
+              <li>Vulnerable and Outdated Components</li>
+            </ul>
+          </div>
+          <div class="bottom-network">
+            <h3>네트워크 보안</h3>
+            <br />
+            <ul>
+              <li>IP Header & ACL</li>
+              <li>Secure Connection</li>
+              <li>Firewall</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+ㄴㄴ
