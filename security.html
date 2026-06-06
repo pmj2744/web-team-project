@@ -19,7 +19,12 @@
         <ul class="nav">
           <li><a href="index.html">Home</a></li>
           <li><a href="security.html">Security</a></li>
-          <li><a href="quiz.html">Quiz</a></li>
+          <li>
+            <a href="https://web-team-project-woad.vercel.app/quiz.html"
+              >Quiz</a
+            >
+          </li>
+          <li><a href="guestBook.html">GuestBook</a></li>
           <li><a href="team.html">Team</a></li>
         </ul>
       </div>
@@ -29,9 +34,9 @@
       <a href="index.html">Home</a>
       <a href="security.html">Security</a>
       <a href="quiz.html">Quiz</a>
+      <a href="guestBook.html">GuestBook</a>
       <a href="team.html">Team</a>
     </div>
-<<<<<<< HEAD
 
     <div class="box-container">
       <div class="filter-container">
@@ -42,9 +47,6 @@
         <button class="summary-btn" id="summaryBtn">요약 보기</button>
       </div>
 
-=======
-    <div class="box-container">
->>>>>>> b678474cac5375adcbe37b14bc35a8ed553d5321
       <div class="box">
         <div class="box-top">
           <h1>DDOS 공격</h1>
@@ -94,14 +96,7 @@
 
       <div class="box">
         <div class="box-top">
-<<<<<<< HEAD
           <h1>Broken Access Control</h1>
-=======
-          <h1>
-            Broken Access<br>Control
-            <br />
-          </h1>
->>>>>>> b678474cac5375adcbe37b14bc35a8ed553d5321
           <span class="category-tag2">앱</span>
         </div>
         <p>#권한 #접근제어 #사용자</p>
@@ -116,15 +111,7 @@
 
       <div class="box">
         <div class="box-top">
-<<<<<<< HEAD
           <h1>Insecure Design</h1>
-=======
-          <h1>
-            Insecure<br>Design
-            <br />
-          </h1>
-          <br />
->>>>>>> b678474cac5375adcbe37b14bc35a8ed553d5321
           <span class="category-tag2">앱</span>
         </div>
         <p>#철저한 #효율 #설계</p>
@@ -138,11 +125,7 @@
 
       <div class="box">
         <div class="box-top">
-<<<<<<< HEAD
           <h1>Vulnerable and Outdated</h1>
-=======
-          <h1>Vulnerable and Outdated </h1>
->>>>>>> b678474cac5375adcbe37b14bc35a8ed553d5321
           <span class="category-tag2">앱</span>
         </div>
         <p>#모니터링 #취약점 #최신화</p>
@@ -196,14 +179,11 @@
           보안 시스템입니다.
         </p>
       </div>
-<<<<<<< HEAD
 
       <div class="clock-container">
         <div id="systemClock">[SYSTEM ACTIVE] 00:00:00</div>
       </div>
 
-=======
->>>>>>> b678474cac5375adcbe37b14bc35a8ed553d5321
       <div class="bottom">
         <hr />
         <div class="bottom-content">
@@ -253,7 +233,6 @@
       </div>
     </div>
 
-<<<<<<< HEAD
     <div class="modal-overlay" id="summaryModal">
       <div class="modal-content" id="modalContent">
         <div class="modal-bg bg-danger"></div>
@@ -302,43 +281,5 @@
     </div>
 
     <script src="javascrpit.js"></script>
-=======
-    <script>
-      document.querySelectorAll('.toggle').forEach((btn) => {
-        btn.addEventListener('click', function () {
-          const box = this.closest('.box')
-          const desc = box.querySelector('.desc')
-          const isHidden =
-            desc.style.display === 'none' || desc.style.display === ''
-
-          document.querySelectorAll('.box').forEach((otherBox) => {
-            const otherDesc = otherBox.querySelector('.desc')
-            const otherToggle = otherBox.querySelector('.toggle')
-
-            otherDesc.style.display = 'none'
-            otherToggle.textContent = '자세히 보기 ▾'
-          })
-
-          if (isHidden) {
-            desc.style.display = 'block'
-            this.textContent = '접기 ▴'
-          }
-        })
-      })
-
-      const btn = document.getElementById('menuBtn')
-      const menu = document.getElementById('mobileMenu')
-
-      btn.addEventListener('click', () => {
-        menu.classList.toggle('open')
-      })
-
-      document.addEventListener('click', (e) => {
-        if (!btn.contains(e.target) && !menu.contains(e.target)) {
-          menu.classList.remove('open')
-        }
-      })
-    </script>
->>>>>>> b678474cac5375adcbe37b14bc35a8ed553d5321
   </body>
 </html>

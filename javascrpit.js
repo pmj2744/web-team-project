@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
   })
 
   // ----------------------------------------------------
-  // 3. 요약 팝업 (모달) 기능
+  // 3. 요약 팝업 (모달) 기능 ★ (마우스 이벤트 추가됨)
   // ----------------------------------------------------
   const summaryBtn = document.getElementById('summaryBtn')
   const modalOverlay = document.getElementById('summaryModal')
@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // 요약 보기 버튼 클릭 시 모달 열기
     summaryBtn.addEventListener('click', () => {
       modalOverlay.classList.add('show')
-      modalContent.classList.remove('secure-mode') // 열 때마다 경고창(기본)으로 초기화
+      modalContent.classList.remove('secure-mode') // 열 때마다 기본 상태로 초기화
     })
 
     // 배경 클릭 시 모달 닫기
@@ -66,7 +66,16 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     })
 
-    // 모바일 사용자를 위한 터치 토글 (마우스 오버는 CSS가 알아서 처리함)
+    // [JS 추가] 데스크탑 사용자를 위한 마우스 오버/아웃 이벤트 구현
+    modalContent.addEventListener('mouseenter', () => {
+      modalContent.classList.add('secure-mode') // 마우스가 올라가면 상태 변경
+    })
+
+    modalContent.addEventListener('mouseleave', () => {
+      modalContent.classList.remove('secure-mode') // 마우스가 나가면 원래 상태로 복귀
+    })
+
+    // 모바일 사용자를 위한 터치 토글 (유지)
     modalContent.addEventListener('click', () => {
       modalContent.classList.toggle('secure-mode')
     })

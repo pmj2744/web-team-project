@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SecureWeb</title>
-    <link rel="stylesheet" href="style.css" />
+    <title>Document</title>
+    <link rel="stylesheet" href="guestBook.css" />
   </head>
   <body>
     <nav class="navbar">
@@ -19,6 +19,8 @@
         <ul class="nav">
           <li><a href="index.html">Home</a></li>
           <li><a href="security.html">Security</a></li>
+          <li><a href="quiz.html">Quiz</a></li>
+          <li><a href="guestBook.html">GuestBook</a></li>
           <li><a href="team.html">Team</a></li>
         </ul>
       </div>
@@ -27,40 +29,34 @@
     <div class="mobile-menu" id="mobileMenu">
       <a href="index.html">Home</a>
       <a href="security.html">Security</a>
+      <a href="quiz.html">Quiz</a>
       <a href="team.html">Team</a>
     </div>
 
-    <div class="main">
-      <div class="top"></div>
-      <div class="content">
-        <div class="left">
-          <div class="left-content">
-            <div class="title">
-              <h1>
-                <span class="title-def">디지털 세상을<br /></span>
-                <span class="title-high">안전하게 </span
-                ><span class="title-def">지키는</span><br />
-                <span class="title-def">보안 기술 탐구</span>
-              </h1>
-            </div>
-            <div class="ex">
-              <p>
-                웹 보안부터 네트워크 보안, 애플리케이션 보안까지.<br />
-                4차 산업혁명 시대의 핵심 보안 기술을 체계적으로<br />
-                탐구하고 정리한 팀 프로젝트 입니다.
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="right">
-          <div class="right-content">
-            <div class="right-image">
-              <img src="img_1.png" alt="locker" />
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="bottom">
+    <div class="guestbook-container">
+      <h2 class="guestbook-title">security web방명록</h2>
+
+      <form id="guestbookForm">
+        <input
+          type="text"
+          id="guestName"
+          placeholder="작성자 닉네임"
+          required
+          autocomplete="off"
+        />
+        <textarea
+          id="guestMessage"
+          placeholder="방명록을 남겨주세요"
+          rows="3"
+          required
+        ></textarea>
+        <button type="submit" id="submitBtn">기록 남기기</button>
+      </form>
+
+      <div id="logArea" class="log-area"></div>
+    </div>
+
+    <div class="bottom">
         <hr />
         <div class="bottom-content">
           <div class="bottom-left">
@@ -106,20 +102,8 @@
             </div>
           </div>
         </div>
-      </div>
-    </div>
-
-    <script>
-      const btn = document.getElementById('menuBtn')
-      const menu = document.getElementById('mobileMenu')
-      btn.addEventListener('click', () => {
-        menu.classList.toggle('open')
-      })
-      document.addEventListener('click', (e) => {
-        if (!btn.contains(e.target) && !menu.contains(e.target)) {
-          menu.classList.remove('open')
-        }
-      })
-    </script>
   </body>
+
+
+  <script src="guestBook.js"></script>
 </html>
